@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.mapNotNull
 
-class WebSocketClient(private val client: HttpClient, private val ipAddress: String) : RealtimeMessagingClient {
+class WebSocketClientKtor(private val client: HttpClient, private val ipAddress: String) : RealtimeMessagingClient {
 
     private var session: WebSocketSession? = null
 

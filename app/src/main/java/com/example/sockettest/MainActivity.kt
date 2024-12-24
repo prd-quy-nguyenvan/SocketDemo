@@ -34,19 +34,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private val ip = "192.168.30.141"
-    private val webSocketClient = WebSocketClient(client, "http://$ip:7003")
-
+    private val webSocketClient = WebSocketClientKtor(client, "http://$ip:7003")
+    private val webSocketClientOkhttp = WebSocketClientOkhttp()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        socketOkhttp()
+    }
 
+    private fun socketOkhttp() {
+        webSocketClientOkhttp.setSocketUrl("ws://$ip:7003")
+        webSocketClientOkhttp.connect()
+        webSocketClientOkhttp.setListener(object : WebSocketClientOkhttp.SocketListener {
+            override fun onMessage(message: String) {
+                Log.d("TAG", message)
+            }
+        })
+    }
+
+    private fun socketKtor() {
         findViewById<TextView>(R.id.btnSocketOpen).setOnClickListener {
             lifecycleScope.launch {
                 webSocketClient.getStateStream()

@@ -25,6 +25,7 @@ ktor-client-websockets = { group = "io.ktor", name = "ktor-client-websockets", v
 ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor-client-websockets" }
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor-client-websockets" }
 ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor-client-websockets" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version = "4.11.0" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
